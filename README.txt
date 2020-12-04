@@ -7,11 +7,11 @@ Running the project:
 -Download this project from git as a zip folder and extract it
 
 -The Virtual environment should already be set up, so you just need to activate it.
-To activate the environment, go open a command prompt and go into the Scripts folder (Location: Ethereum Crawler/Scripts)
+To activate the environment, go open a command prompt and go into the Scripts folder (Location: EtherView-master/Scripts)
 Then just type 'activate' and the name of the environment in brackets should appear next to the location in the command line.
 In the same folder you can type 'deactivate' to deactivate the Virtual environment.
 
--Once you've activated the environment, change directories to Ethereum Crawler/EthereumCrawler.
+-Once you've activated the environment, change directories to EtherView-master/EthereumCrawler.
 Then run the command: 'python manage.py runserver'
 If successful, you should see in the command line that a development server was started at 'http://127.0.0.1:8000/'
 You access the Django website through this link, which should take you to the index page. That's it!
