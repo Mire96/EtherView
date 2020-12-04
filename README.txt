@@ -1,5 +1,6 @@
 
 Hi, welcome to EtherView!
+Project was codded in Python 3.9 using Pycharm community edition
 This project uses the Web3 package for python and some API calls from Etherscan to gather andd store info about the Ethereum blockchain
 The requirements.txt file holds packages and versions used.
 
