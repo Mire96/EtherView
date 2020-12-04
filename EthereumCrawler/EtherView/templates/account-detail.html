@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block additional-import%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+{% endblock additional-import%}
+
+
+{% block content %}
+
+        <div class="container">
+            <h3>Tokens for the account: {{account}}</h3>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Token name</th>
+                      <th>Balance</th>
+                      <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for token in token_list %}
+                      <tr>
+                        <td>{{token.name}}</td>
+                        <td>{{token.balance}}</td>
+                        <td>{{token.date}}</td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+{% endblock content%}

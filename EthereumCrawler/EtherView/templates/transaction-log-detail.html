@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block additional-import%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+{% endblock additional-import%}
+
+
+{% block content %}
+
+        <div class="container">
+            <h3>All transactions(internal and 'normal') from the given address, from the start block to the end block</h3>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Address</th>
+                      <th>Start block</th>
+                      <th>End block</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{transactionlog.address}}</td>
+                        <td>{{transactionlog.start_block}}</td>
+                        <td>{{transactionlog.end_block}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3>Internal transactions</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Reciever</th>
+                  <th>ETH Value</th>
+                  <th>Timestamp</th>
+                  <th>Internal</th>
+                </tr>
+              </thead>
+              <tbody>
+                    {% for transaction in internal_transaction_list %}
+                      <tr>
+                          <td>{{transaction.sender}}</td>
+                          <td>{{transaction.reciever}}</td>
+                          <td>{{transaction.value}}</td>
+                          <td>{{transaction.timestamp}}</td>
+                          <td>{{transaction.internal}}</td>
+                      </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+            <h3>Normal transactions</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Reciever</th>
+                  <th>ETH Value</th>
+                  <th>Timestamp</th>
+                  <th>Internal</th>
+                </tr>
+              </thead>
+              <tbody>
+                    {% for transaction in transaction_list %}
+                      <tr>
+                          <td>{{transaction.sender}}</td>
+                          <td>{{transaction.reciever}}</td>
+                          <td>{{transaction.value}}</td>
+                          <td>{{transaction.timestamp}}</td>
+                          <td>{{transaction.internal}}</td>
+                      </tr>
+                    {% endfor %}
+              </tbody>
+            </table>
+
+        </div>
+
+{% endblock content%}

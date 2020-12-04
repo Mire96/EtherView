@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block additional-import%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+{% endblock additional-import%}
+
+
+
+{% block content %}
+    <h1>Transaction Logs</h1>
+    <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Address</th>
+                      <th>Start block</th>
+                      <th>End block</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for transactionlog in transactionlog_list %}
+                        <tr>
+                            <td><a href="{% url 'transaction-log-detail' transactionlog.pk%}">{{transactionlog.address}}</a></td>
+                            <td>{{transactionlog.start_block}}</td>
+                            <td>{{transactionlog.end_block}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+
+{% endblock content%}
