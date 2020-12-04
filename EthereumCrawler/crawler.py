@@ -18,20 +18,7 @@ infura_url = infura_key
 w3 = Web3(Web3.HTTPProvider(infura_url))
 apiToken = api_key
 
-#First attempts at solving the problem
-def getBalanceFromAccount(address):
-    balance = w3.eth.getBalance(address)
-    print('Wei: ')
-    print(balance)
-    print('Ether: ')
-    print(w3.fromWei(balance, 'ether'))
 
-def getBlocksFromToLast(block_number):
-    latest_block = w3.eth.blockNumber
-    i = block_number
-    while(i <= latest_block):
-        print(w3.eth.getBlock(i))
-        i+=1
 
 
 #Helper functions for transfering date to timestamp and vice-versa #####################################################
@@ -175,7 +162,7 @@ def bsGetAllTokens(account_address):
         token_obj[0] = Decimal(token_obj[0].replace(',', ''))
         result.append(token_obj)
 
-    with open('token_list.html', 'w') as f:
+    with open('token_list.txt', 'w') as f:
         s = ''
         for token in result:
             s += f'{token[0]} of {token[1]}\n'
@@ -200,9 +187,12 @@ def bsGetTokenBalanceAtTime(balance_date, account_address, contract_address):
 
     if response['status'] != "1":
         raise ConnectionError('Invalid contract!')
-    ##Use this outside of django
-    #if balance_date >  datetime.now():
+
+    ##Use this if statement and ddate conversion outside of django
     #balance_date = datetime.strptime(balance_date, '%Y-%m-%d')
+    #if balance_date >  datetime.now():
+
+
     #Use this for django
     if balance_date>date.today():
         raise ValueError('Date is in the future!')
@@ -230,6 +220,7 @@ def bsGetTokenBalanceAtTime(balance_date, account_address, contract_address):
               'ctl00$ContentPlaceHolder1$txtBlockNo': '',
               'ctl00$ContentPlaceHolder1$Button1':'Lookup'
               }
+
     #Scraping the response for Eth balance
     response = scraper.post('https://etherscan.io/tokencheck-tool', data = params)
     soup = bs(response.text, 'html.parser')
@@ -350,6 +341,23 @@ def infuraGetBalanceAtTime(date, address):
     end_block = int(transaction_dict['result'])
     balance = w3.eth.getBalance(address, block_identifier = end_block)
     print(balance)
+
+#First attempts at solving the problem
+def getBalanceFromAccount(address):
+    balance = w3.eth.getBalance(address)
+    print('Wei: ')
+    print(balance)
+    print('Ether: ')
+    print(w3.fromWei(balance, 'ether'))
+
+def getBlocksFromToLast(block_number):
+    latest_block = w3.eth.blockNumber
+    i = block_number
+    while(i <= latest_block):
+        print(w3.eth.getBlock(i))
+        i+=1
+
+
 
 
 
